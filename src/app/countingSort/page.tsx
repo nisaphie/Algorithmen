@@ -3,7 +3,6 @@ import Header from "@/components/nav/header";
 import { Button } from "@/components/ui/button";
 import {
   BetweenVerticalEnd,
-  Binary,
   BoomBox,
   Cat,
   ListOrdered,
@@ -58,18 +57,6 @@ export default function Home() {
           <Card>
             <CardHeader>
               <CardTitle>RadixSort</CardTitle>
-              <CardDescription>Sortieren nach Ziffer</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Binary size={64} />
-            </CardContent>
-            <CardFooter></CardFooter>
-          </Card>
-        </Link>
-        <Link href="/countingSort">
-          <Card>
-            <CardHeader>
-              <CardTitle>CountingSort</CardTitle>
               <CardDescription>Sortieren nach Ziffer</CardDescription>
             </CardHeader>
             <CardContent>
