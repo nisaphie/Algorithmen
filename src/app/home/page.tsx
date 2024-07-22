@@ -66,7 +66,7 @@ export default function Home() {
             <CardFooter></CardFooter>
           </Card>
         </Link>
-        <Link href="/countingSort">
+        <Link href="/Sort">
           <Card>
             <CardHeader>
               <CardTitle>CountingSort</CardTitle>
