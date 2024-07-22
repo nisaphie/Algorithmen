@@ -38,35 +38,37 @@ export default function Home() {
   }, [sortingSpeed]);
 
   async function radixSort() {
-    setIsRunning(true);
-    let array = dataRef.current;
-    let n = array.length;
-    let max = Math.max(...array.map((x) => x.value));
-    let exp = 1;
-    while (Math.floor(max / exp) > 0) {
-      let output = Array(n).fill({ value: 0, fill: "" });
-      let count = Array(10).fill(0);
-      for (let i = 0; i < n; i++) {
-        count[Math.floor(array[i].value / exp) % 10]++;
+      setIsRunning(true);
+      let array = dataRef.current;
+      let n = array.length;
+      let max = Math.max(...array.map((x) => x.value));
+      let exp = 1;
+      let iteration = 0; // Variable to track the iteration
+      while (Math.floor(max / exp) > 0) {
+        let output = Array(n).fill({ value: 0, fill: "" });
+        let count = Array(10).fill(0);
+        for (let i = 0; i < n; i++) {
+          count[Math.floor(array[i].value / exp) % 10]++;
+        }
+        for (let i = 1; i < 10; i++) {
+          count[i] += count[i - 1];
+        }
+        for (let i = n - 1; i >= 0; i--) {
+          output[count[Math.floor(array[i].value / exp) % 10] - 1] = {
+            value: array[i].value,
+            fill: iteration === 0 ? "hsl(var(--chart-1))" : "hsl(var(--chart-6))",
+          };
+          count[Math.floor(array[i].value / exp) % 10]--;
+        }
+        for (let i = 0; i < n; i++) {
+          array[i] = output[i];
+          setData([...array]);
+          await new Promise((r) => setTimeout(r, sortingSpeedRef.current));
+        }
+        exp *= 10;
+        iteration++; // Increment the iteration counter
       }
-      for (let i = 1; i < 10; i++) {
-        count[i] += count[i - 1];
-      }
-      for (let i = n - 1; i >= 0; i--) {
-        output[count[Math.floor(array[i].value / exp) % 10] - 1] = {
-          value: array[i].value,
-          fill: "hsl(var(--chart-1))",
-        };
-        count[Math.floor(array[i].value / exp) % 10]--;
-      }
-      for (let i = 0; i < n; i++) {
-        array[i] = output[i];
-        setData([...array]);
-        await new Promise((r) => setTimeout(r, sortingSpeedRef.current));
-      }
-      exp *= 10;
-    }
-    setIsRunning(false);
+      setIsRunning(false);
   }
 
   return (
