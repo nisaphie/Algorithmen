@@ -22,6 +22,15 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+
 
 export default function Home() {
   const [image, setImage] = useState("/default_cat_1.jpg");
@@ -60,19 +69,23 @@ export default function Home() {
                   onClick={() => setImage(src)}
                 />
               ))}
-              <Input type="file" placeholder="Datei hochladen" onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  const reader = new FileReader();
-                  reader.onload = (e) => {
-                    const result = e.target?.result;
-                    if (typeof result === "string") {
-                      setImage(result);
-                    }
-                  };
-                  reader.readAsDataURL(file);
-                }
-              }} />
+              <Input
+                type="file"
+                placeholder="Datei hochladen"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                      const result = e.target?.result;
+                      if (typeof result === "string") {
+                        setImage(result);
+                      }
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+              />
             </div>
             <Image src={image} alt="" width={512} height={128} />
             <div className="flex flex-row w-full gap-4">
@@ -94,6 +107,23 @@ export default function Home() {
                   onValueChange={(value: number[]) => setRows(value[0])}
                 />
               </div>
+            </div>
+            <div className="flex flex-row gap-4">
+              <Button className="w-full">Zerteilen</Button>
+              <Button className="w-full">Durchmischen</Button>
+              <Button className="w-full">Sortieren</Button>
+            </div>
+            <div>
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Algorihtmus" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </CardContent>
         </Card>
