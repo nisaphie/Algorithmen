@@ -81,17 +81,6 @@ export default function Header() {
                   </Button>
                 </Link>
               </SheetClose>
-              <SheetClose>
-                <Link href="/countingSort">
-                  <Button
-                    variant={"ghost"}
-                    className="justify-start gap-3 w-full"
-                  >
-                    <ListOrdered className="text-primary" />
-                    CountingSort
-                  </Button>
-                </Link>
-              </SheetClose>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

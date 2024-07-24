@@ -46,7 +46,7 @@ export default function Home() {
           <Card>
             <CardHeader>
               <CardTitle>CatSort</CardTitle>
-              <CardDescription>Bild einer Katze sortieren</CardDescription>
+              <CardDescription>Bild (einer Katze) sortieren</CardDescription>
             </CardHeader>
             <CardContent>
               <Cat size={64} />
@@ -62,18 +62,6 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Binary size={64} />
-            </CardContent>
-            <CardFooter></CardFooter>
-          </Card>
-        </Link>
-        <Link href="/Sort">
-          <Card>
-            <CardHeader>
-              <CardTitle>CountingSort</CardTitle>
-              <CardDescription>Sortieren nach Ziffer</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ListOrdered size={64} />
             </CardContent>
             <CardFooter></CardFooter>
           </Card>
