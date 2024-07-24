@@ -35,7 +35,7 @@ export default function Home() {
 
   function ButtonLoading() {
     return (
-      <Button disabled>
+      <Button className="w-full" disabled>
         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         Please wait
       </Button>
@@ -52,24 +52,8 @@ export default function Home() {
     setIsLoading(false);
   }
 
-  function shuffleImage() {
-    const imageElements = document.getElementById("image")?.children;
-    if (!imageElements) {
-      return;
-    }
-    for (var i = 0; i < imageElements.length; ++i) {
-      const randomIndex = Math.floor(Math.random() * imageElements.length);
-      const a = imageElements[i] as HTMLImageElement;
-      const b = imageElements[randomIndex] as HTMLImageElement;
-      const temp = a.style.backgroundImage;
-      a.style.backgroundImage = b.style.backgroundImage;
-      b.style.backgroundImage = temp;
-      const tempIndex = a.dataset.index;
-      a.dataset.index = b.dataset.index;
-      b.dataset.index = tempIndex;
-    }
+  function shuffleImage() {  
     
-  
   }
 
   useEffect(() => {
