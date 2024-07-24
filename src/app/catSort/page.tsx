@@ -24,7 +24,6 @@ import {
 
 import { Loader2 } from "lucide-react";
 
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState("/default_cat_1.jpg");
@@ -43,12 +42,13 @@ export default function Home() {
     );
   }
 
-  function handleShuffle() {
+  async function handleShuffle() {
     setIsLoading(true);
     // Shuffle image
     cutUpImage();
     shuffleImage();
     setImageState("shuffled");
+    await new Promise((r) => setTimeout(r, 100));
     setIsLoading(false);
   }
 
@@ -234,13 +234,20 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row gap-4 w-full">
-              <ButtonLoading />
-              <Button className="w-full" onClick={handleShuffle}>
-                Mischen
-              </Button>
-              <Button className="w-full" onClick={handleSort}>
-                Sortieren
-              </Button>
+              {isLoading ? (
+                <ButtonLoading />
+              ) : (
+                <Button className="w-full" onClick={handleShuffle}>
+                  Mischen
+                </Button>
+              )}
+              {isLoading ? (
+                <ButtonLoading />
+              ) : (
+                <Button className="w-full" onClick={handleSort}>
+                  Sortieren
+                </Button>
+              )}
               <h1>{imageState}</h1>
               <Select>
                 <SelectTrigger className="w-[280px]">
