@@ -39,7 +39,7 @@ export default function Home() {
   >();
 
   const [sortingAlgorithm, setSortingAlgorithm] = useState<
-    "bubble" | "insertion"
+    "bubble" | "insertion" | "selection"
   >();
 
   useEffect(() => {
@@ -155,8 +155,28 @@ export default function Home() {
       setImageState("original");
     };
 
+	const selectionSort = async () => {
+		let n = length;
+		for (let i = 0; i < n-1; i++) {
+			let min_idx = i;
+			for (let j = i+1; j < n; j++) {
+				if (elements[j].props["data-key"] < elements[min_idx].props["data-key"]) {
+					min_idx = j;
+				}
+			}
+			let temp = elements[min_idx];
+			elements[min_idx] = elements[i];
+			elements[i] = temp;
+			setImageElements([...elements]);
+			await delay(sortingSpeedRef.current);
+		}
+		setImageState("original");
+	}
+
     if (sortingAlgorithm === "insertion") insertionSort();
     if (sortingAlgorithm === "bubble") bubbleSort();
+	if (sortingAlgorithm === "selection") selectionSort();
+
   }
 
   return (
@@ -276,6 +296,7 @@ export default function Home() {
                 <SelectContent>
                   <SelectItem value="insertion">InsertionSort</SelectItem>
                   <SelectItem value="bubble">BubbleSort</SelectItem>
+                  <SelectItem value="selection">SelectionSort</SelectItem>
                 </SelectContent>
               </Select>
             </div>
