@@ -33,15 +33,6 @@ export default function Home() {
     "original" | "shuffled" | "sorted"
   >("original");
 
-  function ButtonLoading() {
-    return (
-      <Button className="w-full" disabled>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        Please wait
-      </Button>
-    );
-  }
-
   async function handleShuffle() {
     setIsLoading(true);
     // Shuffle image
@@ -52,9 +43,7 @@ export default function Home() {
     setIsLoading(false);
   }
 
-  function shuffleImage() {  
-    
-  }
+  function shuffleImage() {}
 
   useEffect(() => {
     // Reset image state
@@ -237,14 +226,20 @@ export default function Home() {
             </div>
             <div className="flex flex-row gap-4 w-full">
               {isLoading ? (
-                <ButtonLoading />
+                <Button className="w-full" disabled>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </Button>
               ) : (
                 <Button className="w-full" onClick={handleShuffle}>
                   Mischen
                 </Button>
               )}
               {isLoading ? (
-                <ButtonLoading />
+                <Button className="w-full" disabled>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </Button>
               ) : (
                 <Button className="w-full" onClick={handleSort}>
                   Sortieren
