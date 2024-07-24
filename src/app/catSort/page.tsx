@@ -52,7 +52,25 @@ export default function Home() {
     setIsLoading(false);
   }
 
-  function shuffleImage() {}
+  function shuffleImage() {
+    const imageElements = document.getElementById("image")?.children;
+    if (!imageElements) {
+      return;
+    }
+    for (var i = 0; i < imageElements.length; ++i) {
+      const randomIndex = Math.floor(Math.random() * imageElements.length);
+      const a = imageElements[i] as HTMLImageElement;
+      const b = imageElements[randomIndex] as HTMLImageElement;
+      const temp = a.style.backgroundImage;
+      a.style.backgroundImage = b.style.backgroundImage;
+      b.style.backgroundImage = temp;
+      const tempIndex = a.dataset.index;
+      a.dataset.index = b.dataset.index;
+      b.dataset.index = tempIndex;
+    }
+    
+  
+  }
 
   useEffect(() => {
     // Reset image state
